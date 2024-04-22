@@ -1,0 +1,51 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Utilisateur" as User
+
+rectangle "Plateforme de Gestion des Factures" {
+    usecase "Authentification\net Autorisation" as Auth
+    usecase "Création et Gestion\n des Factures" as ManageInvoices
+    usecase "Envoi et Suivi\n des Factures" as SendTrackInvoices
+    usecase "Gestion des\n Clients" as ManageClients
+    usecase "Archivage et\n Recherche" as ArchiveSearch
+    usecase "Rapports et\n Analyse" as ReportsAnalysis
+    usecase "Gestion des\n Abonnements" as SubscriptionManagement
+
+    User --> Auth
+    User --> ManageInvoices
+    User --> SendTrackInvoices
+    User --> ManageClients
+    User --> ArchiveSearch
+    User --> ReportsAnalysis
+    User --> SubscriptionManagement
+
+    Auth --> (Système d'inscription et de connexion)
+    Auth --> (Gestion des rôles et des autorisations)
+    Auth --> (Réinitialisation de mot de passe)
+
+    ManageInvoices --> (Interface conviviale pour créer de nouvelles factures)
+    ManageInvoices --> (Personnalisation des modèles de facturation)
+    ManageInvoices --> (Ajout de produits ou services)
+    ManageInvoices --> (Gestion des factures en attente, payées et impayées)
+
+    SendTrackInvoices --> (Envoi de factures par e-mail)
+    SendTrackInvoices --> (Téléchargement des factures au format PDF)
+    SendTrackInvoices --> (Suivi des statuts de facturation)
+
+    ManageClients --> (Création et gestion de profils de clients)
+    ManageClients --> (Association de clients aux factures)
+
+    ArchiveSearch --> (Archivage sécurisé des factures)
+    ArchiveSearch --> (Fonction de recherche avancée)
+    
+    ReportsAnalysis --> (Génération de rapports détaillés)
+    ReportsAnalysis --> (Visualisation des tendances de paiement)
+
+    SubscriptionManagement --> (Affichage des plans tarifaires)
+    SubscriptionManagement --> (Inscription et gestion des abonnements)
+    SubscriptionManagement --> (Notification des échéances d'abonnement)
+}
+@enduml
