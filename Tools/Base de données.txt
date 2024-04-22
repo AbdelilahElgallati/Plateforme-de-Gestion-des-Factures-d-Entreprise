@@ -1,0 +1,67 @@
+Collection "Users" :
+{
+    _id: ObjectId, // Identifiant unique de l'utilisateur
+    username: String, // Nom d'utilisateur
+    email: String, // Adresse e-mail de l'utilisateur
+    password: String, // Mot de passe haché
+    role: String, // Rôle de l'utilisateur : admin, standard, silver, gold
+    subscription: ObjectId, // Référence vers l'abonnement de l'utilisateur
+}
+
+Collection "Clients" :
+{
+    _id: ObjectId, // Identifiant unique du client
+    userId: ObjectId, // Identifiant de l'utilisateur associé
+    name: String, // Nom du client
+    email: String, // Adresse e-mail du client
+    phone: String, // Numéro de téléphone du client
+    address: String, // Adresse du client
+    // Autres champs supplémentaires selon les besoins
+}
+
+Collection "Invoices" :
+{
+    _id: ObjectId, // Identifiant unique de la facture
+    userId: ObjectId, // Identifiant de l'utilisateur associé
+    clientId: ObjectId, // Identifiant du client associé
+    invoiceNumber: String, // Numéro de la facture
+    date: Date, // Date de la facture
+    dueDate: Date, // Date d'échéance de la facture
+    items: [
+        {
+            description: String, // Description du produit ou service
+            quantity: Number, // Quantité
+            price: Number, // Prix unitaire
+        }
+    ],
+    status: String, // Statut de la facture : envoyé, payé, en retard, etc.
+    payments: [
+        {
+            amount: Number, // Montant du paiement
+            date: Date, // Date du paiement
+            // Autres champs supplémentaires selon les besoins
+        }
+    ]
+}
+
+Collection "Subscriptions" :
+{
+    _id: ObjectId, // Identifiant unique de l'abonnement
+    userId: ObjectId, // Identifiant de l'utilisateur associé
+    plan: String, // Nom du plan d'abonnement : standard, silver, gold
+    startDate: Date, // Date de début de l'abonnement
+    endDate: Date, // Date de fin de l'abonnement
+    status: String, // Statut de l'abonnement : actif, expiré, annulé, etc.
+    // Autres champs supplémentaires selon les besoins
+}
+
+Collection "Settings" :
+{
+    _id: ObjectId, // Identifiant unique des paramètres
+    userId: ObjectId, // Identifiant de l'utilisateur associé
+    companyName: String, // Nom de l'entreprise
+    logo: String, // Lien vers le logo de l'entreprise
+    currency: String, // Devise utilisée pour les factures
+    taxRate: Number, // Taux de taxe par défaut
+    // Autres champs supplémentaires selon les besoins
+}
