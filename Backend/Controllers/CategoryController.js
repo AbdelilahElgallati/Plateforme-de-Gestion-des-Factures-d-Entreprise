@@ -2,7 +2,7 @@ const Category = require("../Models/CategorySchema")
 
 const addCategory = async (req, res) => {
   try {
-    const categoryData = req.body;
+    const categoryData = req.query;
     const category = new Category(categoryData);
     await category.save();
     res.status(201).json(category);
@@ -22,7 +22,7 @@ const  getAllCategories = async (req, res) => {
 
 const  getOneCategory = async (req, res) => {
   try {
-    const  categorie = await Category.find({_id : req.params._id});
+    const  categorie = await Category.findById(req.params.id);
     res.status(201).json(categorie);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche de categorie");
@@ -31,7 +31,7 @@ const  getOneCategory = async (req, res) => {
 
 const  updateCategory = async (req,res)=>{
   try {
-    const  categorie = await Category.findByIdAndUpdate(req.params._id, req.body.Category, {new: true});
+    const  categorie = await Category.findByIdAndUpdate(req.params.id, req.query, {new: true});
     res.status(201).json(categorie);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de categorie");
@@ -40,7 +40,7 @@ const  updateCategory = async (req,res)=>{
 
 const  removeCategory = async (req, res) => {
   try {
-    const  categorie = await Category.findByIdAndDelete(req.params._id);
+    const  categorie = await Category.findByIdAndDelete(req.params.id);
     res.status(201).json(categorie);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la suppression de categorie");

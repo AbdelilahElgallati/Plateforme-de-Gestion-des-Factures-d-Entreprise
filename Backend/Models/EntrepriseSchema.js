@@ -9,7 +9,7 @@ const EnterpriseSchema = new Schema({
     subscription: { type: String, enum: ['active', 'expired', 'cancelled'], default: 'active' },
     phone: { type: String, required: true },
     address: { type: String, required: true  },
-    logo: { type: String, required: true  }
+    logo: { type: String }
 });
 
 const Enterprise = mongoose.model('Enterprise', EnterpriseSchema);

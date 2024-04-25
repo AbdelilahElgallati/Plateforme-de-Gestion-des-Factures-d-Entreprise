@@ -2,7 +2,7 @@ const Produit = require("../Models/ProductSchema")
 
 const addProduit = async (req, res) => {
   try {
-    const produitData = req.body;
+    const produitData = req.query;
     const produit = new Produit(produitData);
     await produit.save();
     res.status(201).json(produit);
@@ -22,7 +22,7 @@ const  getAllProduits = async (req, res) => {
 
 const  getOneProduit = async (req, res) => {
   try {
-    const  produit = await Produit.find({_id : req.params._id});
+    const  produit = await Produit.findById(req.params.id);
     res.status(201).json(produit);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche de produit");
@@ -31,7 +31,7 @@ const  getOneProduit = async (req, res) => {
 
 const  updateProduit = async (req,res)=>{
   try {
-    const  produit = await Produit.findByIdAndUpdate(req.params._id, req.body.Produit, {new: true});
+    const  produit = await Produit.findByIdAndUpdate(req.params.id, req.query, {new: true});
     res.status(201).json(produit);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de produit");
@@ -40,7 +40,7 @@ const  updateProduit = async (req,res)=>{
 
 const  removeProduit = async (req, res) => {
   try {
-    const  produit = await Produit.findByIdAndDelete(req.params._id);
+    const  produit = await Produit.findByIdAndDelete(req.params.id);
     res.status(201).json(produit);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la suppression de produit");

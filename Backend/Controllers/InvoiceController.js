@@ -2,7 +2,7 @@ const Invoice = require("../Models/InvoiceSchema")
 
 const addInvoice = async (req, res) => {
   try {
-    const InvoiceData = req.body;
+    const InvoiceData = req.query;
     const invoice = new Invoice(InvoiceData);
     await invoice.save();
     res.status(201).json(invoice);
@@ -22,7 +22,7 @@ const  getAllInvoices = async (req, res) => {
 
 const  getOneInvoice = async (req, res) => {
   try {
-    const  invoice = await Invoice.find({_id : req.params._id});
+    const  invoice = await Invoice.findById(req.params.id);
     res.status(201).json(invoice);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche de facture");
@@ -31,7 +31,7 @@ const  getOneInvoice = async (req, res) => {
 
 const  updateInvoice = async (req,res)=>{
   try {
-    const  invoice = await Invoice.findByIdAndUpdate(req.params._id, req.body.Invoice, {new: true});
+    const  invoice = await Invoice.findByIdAndUpdate(req.params.id, req.query, {new: true});
     res.status(201).json(invoice);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de facture");
@@ -40,7 +40,7 @@ const  updateInvoice = async (req,res)=>{
 
 const  removeInvoice = async (req, res) => {
   try {
-    const  invoice = await Invoice.findByIdAndDelete(req.params._id);
+    const  invoice = await Invoice.findByIdAndDelete(req.params.id);
     res.status(201).json(invoice);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la suppression de facture");

@@ -2,7 +2,7 @@ const Client = require("../Models/ClientSchema")
 
 const addClient = async (req, res) => {
   try {
-    const ClientData = req.body;
+    const ClientData = req.query;
     const client = new Client(ClientData);
     await client.save();
     res.status(201).json(Client);
@@ -22,7 +22,7 @@ const  getAllClients = async (req, res) => {
 
 const  getOneClient = async (req, res) => {
   try {
-    const  client = await Client.find({_id : req.params._id});
+    const  client = await Client.findById(req.params.id);
     res.status(201).json(client);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche de client");
@@ -31,7 +31,7 @@ const  getOneClient = async (req, res) => {
 
 const  updateClient = async (req,res)=>{
   try {
-    const  client = await Client.findByIdAndUpdate(req.params._id, req.body.Client, {new: true});
+    const  client = await Client.findByIdAndUpdate(req.params.id, req.query, {new: true});
     res.status(201).json(client);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de client");
@@ -40,7 +40,7 @@ const  updateClient = async (req,res)=>{
 
 const  removeClient = async (req, res) => {
   try {
-    const  client = await Client.findByIdAndDelete(req.params._id);
+    const  client = await Client.findByIdAndDelete(req.params.id);
     res.status(201).json(client);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la suppression de client");

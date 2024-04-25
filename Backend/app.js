@@ -13,15 +13,16 @@ const ProductRouter = require("./Routes/ClientRouter");
 const SettingRouter = require("./Routes/SettingsRouter");
 const SubscriptionRouter = require("./Routes/SubscriptionRouter");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/Categorie", CategorieRouter);
 app.use("/Client", ClientRouter);
 app.use("/Entreprise", EntrepriseRouter);
 app.use("/Invoice", InvoiceRouter);
 app.use("/Pack", PackRouter);
-app.use("/Product", ProductRouter);
+app.use("/Produit", ProductRouter);
 app.use("/Setting", SettingRouter);
 app.use("/Subscription", SubscriptionRouter);
 

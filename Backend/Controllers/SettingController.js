@@ -2,7 +2,7 @@ const Setting = require("../Models/SettingsSchema")
 
 const addSetting = async (req, res) => {
   try {
-    const settingData = req.body;
+    const settingData = req.query;
     const setting = new Setting(settingData);
     await setting.save();
     res.status(201).json(setting);
@@ -22,7 +22,7 @@ const  getAllSettings = async (req, res) => {
 
 const  getOneSetting = async (req, res) => {
   try {
-    const  setting = await Setting.find({_id : req.params._id});
+    const  setting = await Setting.findById(req.params.id);
     res.status(201).json(setting);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche de parametre");
@@ -31,7 +31,7 @@ const  getOneSetting = async (req, res) => {
 
 const  updateSetting = async (req,res)=>{
   try {
-    const  setting = await setting.findByIdAndUpdate(req.params._id, req.body.Setting, {new: true});
+    const  setting = await setting.findByIdAndUpdate(req.params.id, req.query, {new: true});
     res.status(201).json(setting);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de parametre");
@@ -40,7 +40,7 @@ const  updateSetting = async (req,res)=>{
 
 const  removeSetting = async (req, res) => {
   try {
-    const  setting = await Setting.findByIdAndDelete(req.params._id);
+    const  setting = await Setting.findByIdAndDelete(req.params.id);
     res.status(201).json(setting);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la suppression de parametre");
