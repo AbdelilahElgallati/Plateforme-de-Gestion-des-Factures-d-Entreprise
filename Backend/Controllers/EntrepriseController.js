@@ -65,4 +65,10 @@ const login  = async (req, res) =>{
   }
 }
 
+
+
+const uplodeImage = async (req, res) =>{
+
+}
+
 module.exports = {addEntreprise,getAllEntreprises,getOneEntreprise,updateEntreprise,removeEntreprise,login};
