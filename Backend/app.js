@@ -9,7 +9,7 @@ const ClientRouter = require("./Routes/ClientRouter");
 const EntrepriseRouter = require("./Routes/EntrepriseRouter");
 const InvoiceRouter = require("./Routes/InvoiceRouter");
 const PackRouter = require("./Routes/PackRouter");
-const ProductRouter = require("./Routes/ClientRouter");
+const ProductRouter = require("./Routes/ProductRouter");
 const SettingRouter = require("./Routes/SettingsRouter");
 const SubscriptionRouter = require("./Routes/SubscriptionRouter");
 
@@ -17,14 +17,14 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/Categorie", CategorieRouter);
-app.use("/Client", ClientRouter);
-app.use("/Entreprise", EntrepriseRouter);
-app.use("/Invoice", InvoiceRouter);
-app.use("/Pack", PackRouter);
-app.use("/Produit", ProductRouter);
-app.use("/Setting", SettingRouter);
-app.use("/Subscription", SubscriptionRouter);
+app.use("/Api/Categorie", CategorieRouter);
+app.use("/Api/Client", ClientRouter);
+app.use("/Api/Entreprise", EntrepriseRouter);
+app.use("/Api/Invoice", InvoiceRouter);
+app.use("/Api/Pack", PackRouter);
+app.use("/Api/Produit", ProductRouter);
+app.use("/Api/Setting", SettingRouter);
+app.use("/Api/Subscription", SubscriptionRouter);
 
 mongoose
   .connect(url)
