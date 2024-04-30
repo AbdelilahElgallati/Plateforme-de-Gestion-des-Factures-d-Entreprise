@@ -6,7 +6,7 @@ const Cta = () => {
   const {title , subtitle, btnText , img1 , img2} = cta;
   return (
     <section className='section bg-cta bg-cover bg-left-top '>
-      <img className='hidden xl:flex lg:w-[46%] lg:absolute lg:mt-[-191px] lg:ml-[-180px]' src={img1} alt=''
+      <img className='hidden xl:flex lg:w-[46%] lg:absolute lg:mt-[-191px] lg:ml-[-230px]' src={img1} alt=''
           data-aos= 'zoom-out-right'
           data-aos-delay='700'
           />

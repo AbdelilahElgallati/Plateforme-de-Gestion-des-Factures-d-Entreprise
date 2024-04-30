@@ -28,7 +28,7 @@ const App = () => {
     offset:100,
   })
   return (
-    <div className='overflow-hidden'>
+    <div className='overflow-hidden '>
       <Header />
       <Hero />
       <Overview />
@@ -42,7 +42,7 @@ const App = () => {
       <Testimonials />
       <Cta />
       <Footer />
-      <div className='h-[4000px]'></div>
+      <div className='h-[100px]'></div>
     </div>
   );
 };

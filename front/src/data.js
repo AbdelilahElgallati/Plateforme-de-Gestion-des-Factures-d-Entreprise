@@ -268,26 +268,24 @@ export const cta = {
 export const footer = {
   logo: LogoImg,
   links: [
-    { name: 'Home', href: '/' },
-    { name: 'About us', href: '/' },
-    { name: 'Careers', href: '/' },
-    { name: 'Pricing', href: '/' },
-    { name: 'Features', href: '/' },
-    { name: 'Blog', href: '/' },
+    { name: 'Accueil', href: '/' },
+    { name: 'Tarification', href: '/' },
+    { name: 'A propos de', href: '/' },
+    { name: 'Caractéristiques', href: '/' },
   ],
   legal: [
-    { name: 'Terms of use', href: '/' },
-    { name: 'Terms of conditions', href: '/' },
-    { name: 'Privacy policy', href: '/' },
-    { name: 'Cookie policy', href: '/' },
+    { name: 'Accueil', href: '/' },
+    { name: 'Tarification', href: '/' },
+    { name: 'A propos de', href: '/' },
+    { name: 'Caractéristiques', href: '/' },
   ],
   newsletter: {
-    title: 'Newsletter',
-    subtitle: 'Over 25000 people have subscribed',
+    title: 'Envoyez un message',
+    subtitle: "Plus de 5 ans d'expérience",
   },
   form: {
-    placeholder: 'Enter your email',
-    btnText: 'Subscribe',
+    placeholder: 'Envoyez votre message',
+    btnText: 'Envoyer',
     smallText: 'We don’t sell your email and spam',
   },
 };
@@ -301,7 +299,7 @@ export const copyright = {
     name: 'Contact us',
     href: '/',
   },
-  copyText: 'Copyright @ 2022 xpence',
+  copyText: 'Copyright @ 2024 hamzajaada',
   social: [
     { icon: FacebookIcon, href: '/' },
     { icon: TwitterIcon, href: '/' },
