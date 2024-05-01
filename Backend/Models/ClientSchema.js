@@ -7,7 +7,9 @@ const ClientSchema = new Schema({
   email: { type: String },
   phone: { type: String },
   address: { type: String }
-});
+},
+{timestamps: true}
+);
 
 const Client = mongoose.model('Client', ClientSchema);
 

@@ -1,5 +1,6 @@
 const Setting = require("../Models/SettingsSchema")
 
+
 const addSetting = async (req, res) => {
   try {
     const settingData = req.query;
@@ -46,5 +47,7 @@ const  removeSetting = async (req, res) => {
     res.status(500).send("Erreur serveur lors de la suppression de parametre");
   }
 }
+
+
 
 module.exports = {addSetting,getAllSettings,getOneSetting,updateSetting,removeSetting};

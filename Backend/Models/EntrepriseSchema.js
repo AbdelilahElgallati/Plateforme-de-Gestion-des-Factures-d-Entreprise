@@ -10,7 +10,9 @@ const EnterpriseSchema = new Schema({
     phone: { type: String, required: true },
     address: { type: String, required: true  },
     logo: { type: String }
-});
+  },
+  {timestamps: true}
+);
 
 const Enterprise = mongoose.model('Enterprise', EnterpriseSchema);
 
