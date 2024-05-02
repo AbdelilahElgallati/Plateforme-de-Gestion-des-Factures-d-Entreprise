@@ -3,8 +3,17 @@ import { header } from "../data";
 import { HiMenuAlt4, HiOutlineX } from "react-icons/hi";
 import MobileNav from "../components/MobileNav";
 import Nav from "../components/Nav";
+import Cta from "./Cta";
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    // Redirige vers la page de connexion lorsque le bouton est cliqué
+    navigate('/Login');
+  };
   const [mobileNav, setMobileNav] = useState(false);
   const [isActive, setisActive] = useState(false);
   const { logo, btnText } = header;
@@ -27,8 +36,8 @@ const Header = () => {
     <header
       className={`${
         isActive
-          ? "lg:top-0 bg-white shadow-sm z-10"
-          : "lg:top-[0px] bg-white  z-10"
+          ? "lg:top-0 top-0 bg-white shadow-sm z-10"
+          : "lg:top-[0px] top-0 bg-white  z-10"
       } py-6 lg:py-4 fixed w-full transition-all`}
     >
       <div className="container mx-auto flex justify-between items-center  ">
@@ -39,7 +48,10 @@ const Header = () => {
           className=" font-bodyfont inline-block relative mt-3 md:mt-0 ml-[25px]"
           
         >
-          <img className="w-[160px]" src={logo}/>
+          
+          <Link to="/" data-aos="fade-down" data-aos-delay="1000" className="font-bodyfont inline-block relative mt-3 md:mt-0 ml-25">
+      <img className="w-[160px]" src={logo} alt="Logo" />
+    </Link>
           {/* <span className="font-bodyfont text-white absolute bg-accent rounded-full h-10 w-10 flex items-center justify-center -top-2 left-[-35px]">
             MY
           </span>
@@ -53,10 +65,11 @@ const Header = () => {
         >
           <Nav />
         </div>
-        <button
+       <button
           className="btn btn-sm btn-outline hidden lg:flex"
           data-aos="fade-down"
           data-aos-delay="1400"
+          onClick={handleLoginClick}
         >
           {btnText}
         </button>

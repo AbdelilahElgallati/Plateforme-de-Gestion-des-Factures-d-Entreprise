@@ -5,7 +5,7 @@ import { HiOutlineChevronDown } from 'react-icons/hi';
 const Hero = () => {
   const { title, subtitle, btnText, compText, image } = hero;
   return (
-    <section className='min-h-[900px]  py-12 mt-[50px] lg:mt-[50px]'>
+    <section className='min-h-[900px]  py-12 mt-[90px]  lg:mt-[50px]'>
       <div className=' container mx-auto min-h-[900px] flex justify-center items-center '>
         <div className='xl:mt-[-230px]  md: mt-0 flex flex-col lg:gap-x-[30px] gap-y-8 lg:flex-row items-center justify-center text-center lg:text-left'>
           {/* text */}
@@ -29,7 +29,7 @@ const Hero = () => {
               data-aos='fade-down'
               data-aos-delay='700' // Correction ici
             >
-              <button className='  btn btn-md lg:btn-lg btn-accent flex justify-center items-center lg:gap-x-4 md:ml-0'>
+              <button className='btn btn-md lg:btn-lg btn-accent flex justify-center items-center lg:gap-x-4 md:ml-0'>
                 {btnText}
                 <HiOutlineChevronDown />
               </button>
@@ -40,7 +40,7 @@ const Hero = () => {
             data-aos='fade-up'
             data-aos-delay='800' // Correction ici
           >
-            <img src={image} alt="hero" /> 
+            <img  className='lg:ml-[120px]' src={image} alt="hero" /> 
           </div>
         </div>
       </div>
