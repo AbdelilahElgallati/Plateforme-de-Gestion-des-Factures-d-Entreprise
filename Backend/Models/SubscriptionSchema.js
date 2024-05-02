@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 const SubscriptionSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'Enterprise', required: true },
   packId: { type: Schema.Types.ObjectId, ref: 'Pack', required: true },
-  plan: { type: String, required: true },
   startDate: { type: Date, default: Date.now },
   endDate: { type: Date, required: true },
-  status: { type: String, enum: ['active', 'expired', 'cancelled'], default: 'active' }
+  status: { type: String, enum: ['active', 'expired', 'cancelled'], default: 'active' },
+  price: { type: Number, required: true }
 });
 
 const Subscription = mongoose.model('Subscription', SubscriptionSchema);

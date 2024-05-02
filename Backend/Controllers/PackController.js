@@ -1,4 +1,5 @@
-const Pack = require("../Models/PackSchema")
+const Pack = require("../Models/PackSchema");
+const Service = require("../Models/ServiceSchema");
 
 const addPack = async (req, res) => {
   try {
@@ -13,7 +14,7 @@ const addPack = async (req, res) => {
 
 const  getAllPacks = async (req, res) => {
   try {
-    const  packs = await Pack.find();
+    const packs = await Pack.find().populate('services.serviceId');
     res.status(201).json(packs);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche des packs");

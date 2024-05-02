@@ -13,8 +13,29 @@ const addSubscription = async (req, res) => {
 
 const  getAllSubscriptions = async (req, res) => {
   try {
-    const  subscription = await Subscription.find();
-    res.status(201).json(subscription);
+    const  subscription = await Subscription.find().populate('userId', 'name').populate('packId', 'name price');
+    // Créer un tableau pour stocker les informations organisées de chaque souscription
+    const organizedSubscriptions = subscription.map(subscription => {
+      // Formater la date de début
+      const startDate = new Date(subscription.startDate).toLocaleDateString('fr-FR');
+      
+      // Formater la date de fin
+      const endDate = new Date(subscription.endDate).toLocaleDateString('fr-FR');
+      
+      return {
+        _id: subscription._id,
+        enterpriseId: subscription.userId._id,
+        enterpriseName: subscription.userId.name,
+        packId: subscription.packId._id,
+        packName: subscription.packId.name,
+        packPrice: subscription.packId.price,
+        startDate: startDate,
+        endDate: endDate,
+        price: subscription.price,
+        status: subscription.status
+      };
+    });
+    res.status(201).json(organizedSubscriptions);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la recherche des subscription");
   }
