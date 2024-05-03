@@ -11,6 +11,7 @@ import Enterprises from "./pages/Entreprises"
 import Services from "./pages/Services"
 import SubscriptionPalns from "pages/SubscriptionPlan";
 import Messages from "pages/Message";
+import AddService from "pages/Services/AddService";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -27,6 +28,7 @@ function App() {
               <Route path="/Subscriptions" element={<Pack />} />
               <Route path="/Enterprises" element={<Enterprises />} />
               <Route path="/Services" element={<Services />} />
+              <Route path="/Services/new" element={<AddService />} />
               <Route path="/SubscriptionsPlans" element={<SubscriptionPalns />} />
               <Route path="/Messages" element={<Messages />} />
             </Route>

@@ -2,10 +2,10 @@ const Service = require("../Models/ServiceSchema")
 
 const addService = async (req, res) => {
   try {
-    const ServiceData = req.query;
-    const Service = new Service(ServiceData);
-    await Service.save();
-    res.status(201).json(Service);
+    const ServiceData = req.body;
+    const service = new Service(ServiceData);
+    await service.save();
+    res.status(201).json(service);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de l'ajout du service");
   }
