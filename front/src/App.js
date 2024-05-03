@@ -1,10 +1,11 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import aos
 import Aos from 'aos';
 // import aos css
 import 'aos/dist/aos.css';
-
+import { header } from "./data";
 // import components
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -20,30 +21,26 @@ import Pricing from './components/Pricing';
 import Testimonials from './components/Testimonials';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
+import Login from './components/Login/Login';
+import WelcomePage from './components/WelcomePage';
+import Register from './components/Register/Register';
 
 const App = () => {
-  // initialize aos
   Aos.init({
     duration:1800,
     offset:100,
   })
   return (
-    <div className='overflow-hidden '>
-      <Header />
-      <Hero />
-      <Overview />
-      <Brands />
-      <Feature1 />
-      <Feature2 />
-      <Feature3 />
-      <Feature4 />
-      <Product />
-      <Pricing />
-      <Testimonials />
-      <Cta />
-      <Footer />
-      <div className='h-[100px]'></div>
-    </div>
+    <BrowserRouter>
+    <div >
+      <Header/>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register/>} />
+      </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 

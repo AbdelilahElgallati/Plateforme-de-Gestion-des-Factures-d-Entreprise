@@ -1,6 +1,6 @@
 // import images
 import LogoImg from '../src/assets/img/header/lg.png';
-import HeroImg from '../src/assets/img/hero/heroA.png';
+import HeroImg from '../src/assets/img/hero/V.png';
 import OverviewProductImg from '../src/assets/img/overview/product.svg';
 // import OverviewProductImg from '../src/assets/img/overview/inv.png';
 import FacebookImg from '../src/assets/img/overview/brands/facebook.svg';
