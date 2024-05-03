@@ -3,7 +3,9 @@ const EntrepriseRouter = express.Router();
 const EntrepriseController = require("../Controllers/EntrepriseController");
 const Auth = require("../Middlewares/Auth");
 
-EntrepriseRouter.get('/dashboard', EntrepriseController.getDashboardInfo); // Assurez-vous que cette ligne est correcte
+
+EntrepriseRouter.get( "/entreprisedetail/:id", EntrepriseController.getEntrepriseDetail);
+EntrepriseRouter.get('/dashboard', EntrepriseController.getDashboardInfo); 
 EntrepriseRouter.get('/EnterpriseStat', EntrepriseController.getEnterpriseCountByMonthAndYear);
 EntrepriseRouter.get( "/", EntrepriseController.getAllEntreprises); 
 EntrepriseRouter.get( "/:id", EntrepriseController.getOneEntreprise); 

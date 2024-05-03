@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, useTheme, Button, Box } from "@mui/material";
 import Header from "components/Header";
 import { useAddServiceMutation } from "state/api";
 import { useNavigate } from "react-router-dom";
+
 const AddService = () => {
+  const theme = useTheme();
   const [serviceName, setServiceName] = useState("");
   const [addService] = useAddServiceMutation();
   const Navigate = useNavigate();
@@ -15,8 +17,7 @@ const AddService = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("Service Name:", serviceName);
-      await addService({ ServiceName: serviceName });
+      await addService( { ServiceName: serviceName });
       Navigate("/Services");
     } catch (error) {
       console.log(error);
@@ -25,12 +26,16 @@ const AddService = () => {
   };
 
   return (
-    <Box m="1.5rem 2.5rem">
+    <Box m="1.5rem 2.5rem" >
       <Header title="ADD SERVICES" subtitle="Ajoute d'une nouvelle service" />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} sx={{
+        backgroundImage: "none",
+        backgroundColor: theme.palette.background.alt,
+        borderRadius: "0.55rem",
+      }} >
         <TextField
           label="Service Name"
-          value={serviceName.ServiceName}
+          
           name="ServiceName"
           onChange={handleChange}
           fullWidth

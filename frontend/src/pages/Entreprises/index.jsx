@@ -1,19 +1,15 @@
 import React from "react";
-import { Box, useTheme } from "@mui/material";
-import { useGetAllEntreprisesQuery } from "state/api";
+import { Box, useTheme, IconButton } from "@mui/material";
+import { useGetAllEntreprisesQuery, useRemoveEntrepriseMutation } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 const Entreprises = () => {
   const theme = useTheme();
   const { data, isLoading } = useGetAllEntreprisesQuery();
-
+  const [removeEntreprise] = useRemoveEntrepriseMutation();
   const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      flex: 0.7,
-    },
     {
       field: "name",
       headerName: "Name",
@@ -42,9 +38,43 @@ const Entreprises = () => {
     {
       field: "role",
       headerName: "Role",
-      flex: 0.5,
+      flex: 0.3,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      flex: 0.3,
+      sortable: false,
+      renderCell: (params) => (
+        <Box>
+          <IconButton
+            onClick={() => handleEdit(params.row._id)}
+            aria-label="edit"
+          >
+            <InfoOutlinedIcon />
+          </IconButton>
+          <IconButton
+            onClick={() => handleDelete(params.row._id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      ),
     },
   ];
+
+  const handleEdit = (id) => {
+    window.location.href = `/Enterprises/Details/${id}`;
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await removeEntreprise(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Box m="1.5rem 2.5rem" >

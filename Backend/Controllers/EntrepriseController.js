@@ -1,7 +1,9 @@
 const Entreprise = require("../Models/EntrepriseSchema");
 const Subscription = require("../Models/SubscriptionSchema");
 const Invoice = require("../Models/InvoiceSchema");
+const Pack = require('../Models/PackSchema')
 const jwt = require("jsonwebtoken");
+const SubscriptionController = require("../Controllers/SubscriptionController")
 
 const addEntreprise = async (req, res) => {
   try {
@@ -13,7 +15,7 @@ const addEntreprise = async (req, res) => {
       address,
       logo,
       passwordConfirmation,
-    } = req.query;
+    } = req.data;
     const existeEntreprise = await Entreprise.findOne({ email: email });
     if (!existeEntreprise && password === passwordConfirmation) {
       const entreprise = new Entreprise({
@@ -57,11 +59,43 @@ const getOneEntreprise = async (req, res) => {
   }
 };
 
+const getEntrepriseDetail = async (req, res) => {
+  try {
+    const entreprise = await Entreprise.findById(req.params.id);
+    const subscriptions = await Subscription.find();
+    const filteredSubscriptions = subscriptions.find(subscription => subscription.userId.toString() === entreprise._id.toString());
+    const packEntreprise = await Pack.find();
+    const filteredpackEntreprise = packEntreprise.find(pack => {
+      return filteredSubscriptions && filteredSubscriptions.packId.toString() === pack._id.toString();
+    });
+    const startDate = new Date(filteredSubscriptions.startDate).toLocaleDateString('fr-FR');
+    const endDate = new Date(filteredSubscriptions.endDate).toLocaleDateString('fr-FR');
+    const entrepriseDetail = {
+      _id : entreprise._id,
+      name : entreprise.name,
+      email : entreprise.email,
+      phone : entreprise.phone,
+      address : entreprise.address,
+      logo : entreprise.logo,
+      subscriptionStatue : filteredSubscriptions.status,
+      subscriptionStartDate : startDate,
+      subscriptionEndDate : endDate,
+      pack : filteredpackEntreprise.name,
+      price : filteredpackEntreprise.price,
+    };
+    res.status(200).json(entrepriseDetail);
+  } catch (error) {
+    console.error("Error occurred: ", error);
+    res.status(500).send("Erreur serveur lors de la recherche d'entreprise");
+  }
+};
+
+
 const updateEntreprise = async (req, res) => {
   try {
     const entreprise = await Entreprise.findByIdAndUpdate(
       req.params.id,
-      req.query,
+      req.data,
       { new: true }
     );
     res.status(201).json(entreprise);
@@ -93,66 +127,19 @@ const login = async (req, res) => {
 
 const getDashboardInfo = async (req, res) => {
   try {
-    // const enterpriseCount = await Entreprise.countDocuments();
-    // const revenueByPack = await Subscription.aggregate([
-    //   // Faire correspondre les abonnements avec les packs
-    //   {
-    //     $lookup: {
-    //       from: "packs",
-    //       localField: "packId",
-    //       foreignField: "_id",
-    //       as: "packInfo"
-    //     }
-    //   },
-    //   // Dérouler la liste des abonnements
-    //   { $unwind: "$packInfo" },
-    //   // Regrouper par pack d'abonnement et calculer la somme des montants payés
-    //   {
-    //     $group: {
-    //       _id: "$packId",
-    //       totalRevenue: { $sum: "$packInfo.price" }
-    //     }
-    //   }
-    // ]);
-
-    // // Nombre de comptes d'entreprise actifs
-    // const activeEnterpriseCount = await Subscription.countDocuments({
-    //   endDate: { $gte: new Date() }
-    // });
-
-    // return res.status(200).json({
-    //   enterpriseCount,
-    //   revenueByPack,
-    //   activeEnterpriseCount
-    // });
-
-    // Nombre total d'entreprises inscrites
     const totalEntreprises = await Entreprise.countDocuments();
-
-    // Revenus générés par les abonnements
     const revenueBySubscription = await Subscription.aggregate([
       { $group: { _id: "$packId", totalRevenue: { $sum: "$price" } } },
     ]);
-
-    // Nombre de factures émises
     const totalInvoices = await Invoice.countDocuments();
-
-    // Nombre de factures payées
     const paidInvoices = await Invoice.countDocuments({ status: "paid" });
-
-    // Nombre de factures impayées
     const unpaidInvoices = await Invoice.countDocuments({
       status: { $ne: "paid" },
     });
-
-    // Taux d'abonnement par niveau
     const subscriptionCounts = await Subscription.aggregate([
       { $group: { _id: "$status", count: { $sum: 1 } } },
     ]);
-
     const enterpriseCountByMonthAndYear = getEnterpriseCountByMonthAndYear();
-
-    // Préparer les données à renvoyer
     const dashboardData = {
       totalEntreprises,
       revenueBySubscription,
@@ -162,8 +149,6 @@ const getDashboardInfo = async (req, res) => {
       subscriptionCounts,
       enterpriseCountByMonthAndYear,
     };
-
-    // Envoyer les données au client
     res.status(200).json(dashboardData);
   } catch (error) {
     console.error("Erreur : ", error);
@@ -209,4 +194,5 @@ module.exports = {
   removeEntreprise,
   login,
   getEnterpriseCountByMonthAndYear,
+  getEntrepriseDetail,
 };

@@ -7,9 +7,7 @@ import globalReducer from "state";
 import { Provider } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "state/api";
-import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
 const store = configureStore({
   reducer: {
     global: globalReducer,
@@ -24,9 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
+      <App />
     </Provider>
   </React.StrictMode>
 );

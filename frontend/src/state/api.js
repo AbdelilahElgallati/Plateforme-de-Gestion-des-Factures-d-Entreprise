@@ -14,6 +14,14 @@ export const api = createApi({
       query: () => `Entreprise`,
       providesTags: ["Entreprise"],
     }),
+    getOneEntreprise: build.query({
+      query: (id) => `Entreprise/${id}`,
+      providesTags: ["Entreprise"],
+    }),
+    getEntrepriseDetail: build.query({
+      query: (id) => `Entreprise/entreprisedetail/${id}`,
+      providesTags: ["Entreprise"],
+    }),
     getDashboard: build.query({
       query: () => `Entreprise/dashboard`,
       providesTags: ["Entreprise"],
@@ -136,7 +144,9 @@ export const api = createApi({
 export const {
   useGetEntrepriseQuery,
   useGetAllEntreprisesQuery,
+  useGetOneEntrepriseQuery,
   useGetEntrepriseStateQuery,
+  useGetEntrepriseDetailQuery,
   useGetDashboardQuery,
   useRemoveEntrepriseMutation,
 
