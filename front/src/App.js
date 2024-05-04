@@ -24,7 +24,7 @@ import Footer from './components/Footer';
 import Login from './components/Login/Login';
 import WelcomePage from './components/WelcomePage';
 import Register from './components/Register/Register';
-
+import Model from './components/Modele/Model';
 const App = () => {
   Aos.init({
     duration:1800,
@@ -38,6 +38,7 @@ const App = () => {
         <Route path="/" element={<WelcomePage />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register/>} />
+        <Route path="/Modeles" element={<Model/>} />
       </Routes>
       </div>
     </BrowserRouter>

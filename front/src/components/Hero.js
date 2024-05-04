@@ -1,9 +1,16 @@
 import React from 'react';
 import { hero } from '../data';
 import { HiOutlineChevronDown } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { title, subtitle, btnText, compText, image } = hero;
+  const navigate = useNavigate();
+  const handleLoginClick = () => {
+    // Redirige vers la page de connexion lorsque le bouton est cliqué
+    navigate('/Login');
+  };
   return (
     <section className='min-h-[900px]  py-12 mt-[90px]  lg:mt-[50px]'>
       <div className=' container mx-auto min-h-[900px] flex justify-center items-center '>
@@ -29,7 +36,8 @@ const Hero = () => {
               data-aos='fade-down'
               data-aos-delay='700' // Correction ici
             >
-              <button className='btn btn-md lg:btn-lg btn-accent flex justify-center items-center lg:gap-x-4 md:ml-0'>
+              <button className='btn btn-md lg:btn-lg btn-accent flex justify-center items-center lg:gap-x-4 md:ml-0'
+               onClick={handleLoginClick}>
                 {btnText}
                 <HiOutlineChevronDown />
               </button>

@@ -1,9 +1,14 @@
 import React from 'react';
 import COVER_IMAGE from '../../assets/img/Login/Blue White Minimal Creative Illustration Short Link Application Online Instagram Story (4).png'
 import Gogle from '../../assets/img/Login/th.jpg'
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
-  
+  const navigate = useNavigate();
+
+  const handleRegisterClick = () => {
+    // Redirige vers la page de connexion lorsque le bouton est cliqué
+    navigate('/Register');
+  };
   return (
     <div className='mx-auto max-w-screen-lg flex flex-col lg:flex-row mt-8  lg:ml-[285px] lg:mt-[150px] '>
       <div className='w-full lg:w-[350px]'>
@@ -32,7 +37,8 @@ const Login = () => {
         <button className='w-full bg-[#060606] hover:bg-accent text-white rounded-md py-3 mb-4'>
           Connexion
         </button>
-        <button className='w-full border border-black text-[#060606] bg-white hover:bg-gray-300 rounded-md py-3 mb-4'>
+        <button className='w-full border border-black text-[#060606] bg-white hover:bg-gray-300 rounded-md py-3 mb-4'
+        onClick={handleRegisterClick}>
           Inscription
         </button>
         <div className='w-full text-center mb-4'>

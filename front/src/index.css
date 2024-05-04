@@ -27,7 +27,7 @@
     @apply text-lg lg:text-[22px] text-light mb-4 lg:mb-6 uppercase font-normal;
   }
   .lead {
-    @apply text-lg text-light font-normal ;
+    @apply text-lg text-light font-normal lg:mb-[15px] ;
   }
   .link {
     @apply text-lg text-dark;
@@ -57,6 +57,6 @@
     @apply bg-transparent text-accent border border-accent hover:bg-accent hover:text-white;
   }
   .btn-link {
-    @apply text-accent text-xl lg:text-lg;
+    @apply text-accent text-xl lg:text-lg font-bold;
   }
 }

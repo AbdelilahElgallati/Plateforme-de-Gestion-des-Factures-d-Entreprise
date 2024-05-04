@@ -29,6 +29,13 @@ import CtaImg2 from '../src/assets/img/cta/image2.svg';
 import FacebookIcon from '../src/assets/img/copyright/facebook.svg';
 import TwitterIcon from '../src/assets/img/copyright/twitter.svg';
 import LinkedinIcon from '../src/assets/img/copyright/linkedin.svg';
+import backgroundImage from "../src/assets/img/Modeles/b1.png";
+import ic1 from "../src/assets/img/Modeles/Ic1.png";
+import ic2 from "../src/assets/img/Modeles/freelance.webp";
+import ic3 from "../src/assets/img/Modeles/printable.webp";
+import ic4 from "../src/assets/img/Modeles/graphic.webp";
+import ic5 from "../src/assets/img/Modeles/photography.webp";
+import ic6 from "../src/assets/img/Modeles/contractor.webp";
 
 export const header = {
   logo: LogoImg,
@@ -306,3 +313,41 @@ export const copyright = {
     { icon: LinkedinIcon, href: '/' },
   ],
 };
+export const modelData = [
+  {
+    image: backgroundImage,
+    title: "Modèles de factures à usage spécifique",
+    sections: [
+      {
+        image: ic1,
+        title: "Modèles de factures de construction",
+        description: "Conçus avec des sections distinctes pour les matériaux et la main-d'œuvre. Elles incluent également la 'localisation du site' au lieu des détails/adresses/coûts d'expédition.",
+      },
+      {
+        image: ic2,
+        title: "Modèles de factures pour les freelances",
+        description: "Inclut quelques modèles de factures gratuits adaptés aux projets d'indépendants avec facturation détaillée et suivi du temps de travail.",
+      },
+      {
+        image: ic3,
+        title: "Modèle de facture imprimable",
+        description: "Ce modèle en noir et blanc a été conçu pour être imprimable afin de vous permettre d'établir facilement une facture fiable pour votre petite entreprise.",
+      },
+      {
+        image: ic4,
+        title: "Modèle de facture pour la conception graphique",
+        description: "Vous travaillez comme graphiste indépendant ? Ces modèles sont faits pour vous ! Vous avez le choix entre des factures conçues pour des projets à tarif fixe ou à tarif horaire.",
+      },
+      {
+        image: ic5,
+        title: "Modèle de facture pour la photographie",
+        description: "Cette page contient quelques conseils sur la rédaction d'une facture complète pour les travaux de photographie, ainsi que plusieurs modèles pertinents.",
+      },
+      {
+        image: ic6,
+        title: "Modèle de facture pour les entrepreneurs",
+        description: "Ces modèles comportent des sections consacrées aux matériaux et à la main-d'œuvre. Cette page contient également des conseils sur ce qu'il faut inclure pour laisser une bonne impression finale.",
+      },
+    ],
+  },
+];
