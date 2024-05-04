@@ -10,11 +10,6 @@ const SubscriptionPalns = () => {
   console.log(data);
   const columns = [
     {
-      field: "_id",
-      headerName: "ID",
-      flex: 0.5,
-    },
-    {
       field: "enterpriseName",
       headerName: "Entreprise",
       flex: 0.5,

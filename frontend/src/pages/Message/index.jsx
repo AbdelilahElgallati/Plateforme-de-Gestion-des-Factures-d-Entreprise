@@ -1,19 +1,15 @@
 import React from "react";
-import { Box, useTheme } from "@mui/material";
-import { useGetMessagesQuery } from "state/api";
+import { Box, useTheme, IconButton } from "@mui/material";
+import { useGetMessagesQuery, useRemoveMessageMutation } from "state/api";
 import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Messages = () => {
   const theme = useTheme();
   const { data, isLoading } = useGetMessagesQuery();
-  console.log(data);
+  const [removeMessage] = useRemoveMessageMutation();
   const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      flex: 0.7,
-    },
     {
       field: "enterpriseName",
       headerName: "Entreprise",
@@ -28,8 +24,32 @@ const Messages = () => {
       field: "createdAt",
       headerName: "Date d'envoie",
       flex: 1,
-    }
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      flex: 0.2,
+      sortable: false,
+      renderCell: (params) => (
+        <Box>
+          <IconButton
+            onClick={() => handleDelete(params.row._id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      ),
+    },
   ];
+
+  const handleDelete = async (id) => {
+    try {
+      await removeMessage(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Box m="1.5rem 2.5rem">

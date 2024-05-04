@@ -2,10 +2,10 @@ const Service = require("../Models/ServiceSchema")
 
 const addService = async (req, res) => {
   try {
-    const ServiceData = req.query;
-    const Service = new Service(ServiceData);
-    await Service.save();
-    res.status(201).json(Service);
+    const ServiceData = req.body;
+    const service = new Service(ServiceData);
+    await service.save();
+    res.status(201).json(service);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de l'ajout du service");
   }
@@ -31,7 +31,8 @@ const  getOneService = async (req, res) => {
 
 const  updateService = async (req,res)=>{
   try {
-    const  service = await Service.findByIdAndUpdate(req.params.id, req.query, {new: true});
+    
+    const  service = await Service.findByIdAndUpdate(req.params.id, req.body, {new: true});
     res.status(201).json(service);
   } catch (error) {
     res.status(500).send("Erreur serveur lors de la mise à jour de service");
